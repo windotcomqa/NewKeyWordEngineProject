@@ -18,7 +18,7 @@ public class WriteExcel {
 	public static void updateExcel(int rownum, int colnum, String value) throws IOException {
 
 		File f = new File(
-				"C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx");
+				System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx");
 		FileInputStream fi = new FileInputStream(f);
 		Workbook wb = new XSSFWorkbook(fi);
 		Sheet sheet = wb.getSheet("MasterSheet");

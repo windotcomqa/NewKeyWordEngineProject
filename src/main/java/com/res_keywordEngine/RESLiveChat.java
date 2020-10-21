@@ -1,4 +1,4 @@
-package com.dotcom.keyword.engine;
+package com.res_keywordEngine;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,13 +9,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LiveChat {
+public class RESLiveChat {
+	
+	public static void main(String[] args) throws Throwable {
 
-	public static void main(String[] args) throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver",
 				"./driver/chromedriver.exe");
 		ChromeDriver driver = new ChromeDriver();
-		driver.get("https://business.windstream.com");
+		driver.get("https://www.windstream.com/kinetic-tv");
 		driver.manage().window().maximize();
 
 		/*** Getting EST time ***/
@@ -31,17 +32,18 @@ public class LiveChat {
 		int hours = time.getHours();
 
 		System.out.println(hours);
-		// Check for Business hours or Non-Business hours
+		// Check for Business hours three tile
 		if ((hours >= 8) && (hours <= 18)) {
-			WebElement BeginChatText = driver.findElement(By.xpath("//a[text()='Begin Chat ']"));
+			
+			WebElement BeginChatText = driver.findElement(By.xpath("//a[text()='Chat now']"));
 			String bushr = BeginChatText.getText();
 			System.out.println(bushr);
-			String BeginChatActualText = "Begin Chat";
+			String BeginChatActualText = "Chat now";
 			System.out.println("the value of"+ BeginChatActualText);
-			WebElement BusHoursText = driver.findElement(By.xpath("( //p[@class=' para_desc vertical'])[1]"));
+			WebElement BusHoursText = driver.findElement(By.xpath("(//div[@class='card-body'])[6]/p[1]"));
 			String bushrText = BeginChatText.getText();
 			System.out.println(bushrText);
-			String ChatActualText = "Have a quick question?";
+			String ChatActualText = "Get help fast and easy in real time from a knowledgeable representative.";
 			System.out.println("the value of"+ ChatActualText);
 			if (bushr.equalsIgnoreCase(BeginChatActualText) || bushrText.contains(ChatActualText)) {
 				System.out.println("Live chat cta is visible");
@@ -97,5 +99,7 @@ public class LiveChat {
 
 		}
 
+	
 	}
+
 }

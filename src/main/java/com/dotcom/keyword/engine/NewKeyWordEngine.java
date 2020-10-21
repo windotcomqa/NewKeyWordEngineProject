@@ -58,13 +58,13 @@ public class NewKeyWordEngine extends kickStart {
 	public static Workbook book;
 	public static org.apache.poi.ss.usermodel.Sheet sheet;
 	// reports
-	public final String SCENARIO_SHEET_PATH = "C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
+	public final String SCENARIO_SHEET_PATH = System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
 
 	// Master sheet test plan
 	public void readExecution() throws Throwable {
 
 		File f = new File(
-				"C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx");
+				System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx");
 		FileInputStream fin = new FileInputStream(f);
 		Workbook wb = new XSSFWorkbook(fin);
 		Sheet sheet = wb.getSheet("MasterSheet");

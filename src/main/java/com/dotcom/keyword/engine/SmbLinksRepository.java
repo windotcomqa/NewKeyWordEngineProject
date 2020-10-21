@@ -13,7 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class SmbLinksRepository {
 	public static Map<String, Map<String, String>> setMapData() throws IOException {
-        String path = "C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
+        String path = System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
         FileInputStream fis = new FileInputStream(path);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(2);

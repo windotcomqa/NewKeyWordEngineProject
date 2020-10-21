@@ -17,7 +17,7 @@ public class ReadLinks {
           
           public static  Map<String, Map<String, String>> setMapData() throws Throwable {
                    
-                   File f = new File("C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Residential_Scenarios.xlsx");
+                   File f = new File(System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Residential_Scenarios.xlsx");
                    FileInputStream fin = new FileInputStream(f);
                    Workbook wb = new XSSFWorkbook(fin);
                    Sheet sheet = wb.getSheetAt(3);

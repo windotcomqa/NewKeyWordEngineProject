@@ -62,8 +62,7 @@ public class Base extends Reports {
 	public WebDriver init_driver(String browserName) {
 		if (browserName.equals("chrome")) {
 
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\chromeDriver\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver","./chromeDriver/chromedriver.exe");
 
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
@@ -75,7 +74,7 @@ public class Base extends Reports {
 		prop = new Properties();
 		try {
 			FileInputStream ip = new FileInputStream(
-					"C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\qa\\keyword\\config\\config.properties");
+					System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\qa\\keyword\\config\\config.properties");
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
@@ -90,7 +89,7 @@ public class Base extends Reports {
 	// Object Rep hashmap
 
 	public static Map<String, Map<String, String>> setMapData() throws IOException {
-		String path = "C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
+		String path = System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
 		FileInputStream fis = new FileInputStream(path);
 		Workbook workbook = new XSSFWorkbook(fis);
 		Sheet sheet = workbook.getSheetAt(1);
@@ -123,7 +122,7 @@ public class Base extends Reports {
 	}
 	//SMB link repository
 	public static Map<String, Map<String, String>> setMapData2() throws IOException {
-        String path = "C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
+        String path = System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
         FileInputStream fis = new FileInputStream(path);
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(2);
@@ -157,7 +156,7 @@ public class Base extends Reports {
 	//RES link obj repository
 	 
     public static Map<String, Map<String, String>> setMapData3() throws IOException {
-             String path = "C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Residential_Scenarios.xlsx";
+             String path = System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Residential_Scenarios.xlsx";
              FileInputStream fis = new FileInputStream(path);
              Workbook workbook = new XSSFWorkbook(fis);
              Sheet sheet = workbook.getSheetAt(1);
@@ -192,7 +191,7 @@ public class Base extends Reports {
 	// Title repository HashMap
 
 	public static Map<String, Map<String, String>> setMapData1() throws IOException {
-		String path = "C:\\Users\\roobini.bu\\Desktop\\mydocs\\Automaiton updated smb and res\\NewKeyWordEngineProject-master\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
+		String path = System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Test_Scenarios.xlsx";
 		FileInputStream fis = new FileInputStream(path);
 		Workbook workbook = new XSSFWorkbook(fis);
 		Sheet sheet = workbook.getSheetAt(5);
