@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ResLinksRepository {
 	  public static Map<String, Map<String, String>> setMapData() throws IOException {
           String path = System.getProperty("user.dir")+"\\src\\main\\java\\com\\dotcom\\keyword\\scenarios\\Residential_Scenarios.xlsx";
+        System.out.println(path);
           FileInputStream fis = new FileInputStream(path);
           Workbook workbook = new XSSFWorkbook(fis);
           Sheet sheet = workbook.getSheetAt(2);

@@ -1,5 +1,6 @@
 package com.dotcom.keyword.engine;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
@@ -9,13 +10,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LiveChat {
+
+
+public class LiveChat   {
+	
 
 	public static void main(String[] args) throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver",
-				"./driver/chromedriver.exe");
+				"C:\\Users\\roobini.bu\\Desktop\\Automaiton updated smb and res backup\\NewKeyWordEngineProject-master\\chromeDriver\\chromedriver.exe");
 		ChromeDriver driver = new ChromeDriver();
-		driver.get("https://business.windstream.com");
+		driver.get("https://business.windstream.com/fiber-internet");;
 		driver.manage().window().maximize();
 
 		/*** Getting EST time ***/
@@ -65,8 +69,23 @@ public class LiveChat {
 									System.out.println("kineticcommunities is passed");
 									//CustomKeywords.'chatkey.chat.title'(i, 13, 'passed')
 									//live.title(i, 13, 'passed')
+									LiveChatWriteExcel liv= new LiveChatWriteExcel();
+									try {
+										liv.businessLiveChat(1, 2, "BusinesshourchatPass");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
 								} else {
 									System.out.println("kineticcommunities is failed");
+									LiveChatWriteExcel liv= new LiveChatWriteExcel();
+									try {
+										liv.businessLiveChat(1, 2, "BusinesshourchatFail");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
 
 									//CustomKeywords.'chatkey.chat.title'(i, 13, 'Failed')
 								//	live.title(i, 13, 'Failed')
@@ -92,10 +111,28 @@ public class LiveChat {
 			String s1 = "We're sorry, but Live Chat is only available during the following hours: Monday-Friday, 8:00 a.m. – 6:00 p.m. (ET) Saturday, 8:30 a.m. – 5 p.m. (ET)";
 			if (nonbushr.equalsIgnoreCase(s1)) {
 				System.out.println("Live chat cta is visible");
+				LiveChatWriteExcel liv= new LiveChatWriteExcel();
+				try {
+					liv.businessLiveChat(1, 1, "Non-BusinesshourPass");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
+			}else {
+				LiveChatWriteExcel liv= new LiveChatWriteExcel();
+				try {
+					liv.businessLiveChat(1, 1, "Non-BusinesshourFail");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 
 		}
 
+		
+		
 	}
 }

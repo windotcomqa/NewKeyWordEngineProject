@@ -2,35 +2,35 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="8355" started-at="2020-10-21T20:23:42 IST" finished-at="2020-10-21T20:23:50 IST">
+  <suite name="Default suite" duration-ms="221884" started-at="2021-01-28T21:14:12 IST" finished-at="2021-01-28T21:17:54 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="8355" started-at="2020-10-21T20:23:42 IST" finished-at="2020-10-21T20:23:50 IST">
-      <class name="com.dotcom.testcase.kickStart">
-        <test-method status="PASS" signature="before()[pri:0, instance:com.dotcom.testcase.kickStart@57e1b0c]" name="before" is-config="true" duration-ms="365" started-at="2020-10-21T20:23:42 IST" finished-at="2020-10-21T20:23:42 IST">
+    <test name="Default test" duration-ms="221884" started-at="2021-01-28T21:14:12 IST" finished-at="2021-01-28T21:17:54 IST">
+      <class name="com.dotcom.testcase.ResKickStart">
+        <test-method status="PASS" signature="before()[pri:0, instance:com.dotcom.testcase.ResKickStart@3b088d51]" name="before" is-config="true" duration-ms="645" started-at="2021-01-28T21:14:12 IST" finished-at="2021-01-28T21:14:12 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- before -->
-        <test-method status="PASS" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.dotcom.testcase.kickStart@57e1b0c]" name="setUp" is-config="true" duration-ms="4" started-at="2020-10-21T20:23:42 IST" finished-at="2020-10-21T20:23:42 IST">
+        <test-method status="PASS" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.dotcom.testcase.ResKickStart@3b088d51]" name="setUp" is-config="true" duration-ms="7" started-at="2021-01-28T21:14:12 IST" finished-at="2021-01-28T21:14:12 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.dotcom.testcase.kickStart.SignIn() throws java.lang.Throwable]]>
+                <![CDATA[public void com.dotcom.testcase.ResKickStart.SignIn() throws java.lang.Throwable]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="SignIn()[pri:0, instance:com.dotcom.testcase.kickStart@57e1b0c]" name="SignIn" duration-ms="8276" started-at="2020-10-21T20:23:42 IST" finished-at="2020-10-21T20:23:50 IST">
+        <test-method status="PASS" signature="SignIn()[pri:0, instance:com.dotcom.testcase.ResKickStart@3b088d51]" name="SignIn" duration-ms="221767" started-at="2021-01-28T21:14:13 IST" finished-at="2021-01-28T21:17:54 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SignIn -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:com.dotcom.testcase.kickStart@57e1b0c]" name="endTest" is-config="true" duration-ms="403" started-at="2020-10-21T20:23:50 IST" finished-at="2020-10-21T20:23:51 IST">
+        <test-method status="PASS" signature="endTest()[pri:0, instance:com.dotcom.testcase.ResKickStart@3b088d51]" name="endTest" is-config="true" duration-ms="930" started-at="2021-01-28T21:17:54 IST" finished-at="2021-01-28T21:17:55 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
-      </class> <!-- com.dotcom.testcase.kickStart -->
+      </class> <!-- com.dotcom.testcase.ResKickStart -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

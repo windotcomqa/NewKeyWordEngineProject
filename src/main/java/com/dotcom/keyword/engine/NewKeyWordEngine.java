@@ -7,10 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 //import org.apache.poi.hssf.model.Workbook;
@@ -55,6 +58,7 @@ public class NewKeyWordEngine extends kickStart {
 	public WebElement element;
 	public SmbLinksRepository smblink;
 
+	public static ChatLinkInput chatlink;
 	public static Workbook book;
 	public static org.apache.poi.ss.usermodel.Sheet sheet;
 	// reports
@@ -2690,6 +2694,136 @@ public class NewKeyWordEngine extends kickStart {
 						else if (action != null && action.equalsIgnoreCase("VOIP_Checkout")) {
 						         base.wait(driver, LocatorName);
 						         base.verifytext(driver, LocatorName, value);
+						}
+			
+			
+			//Business Live Chat
+						else if (action != null && action.equalsIgnoreCase("LiveChat")) {
+							String chat = chatlink.getChatData(value);
+							String val18 = base.getMapData(LocatorName);
+							String[] arr_locator = val18.split("%");
+							
+							int loc = 0;
+							System.out.println("value " +value);
+							System.out.println("chat "  +chat);
+							driver.get(chat);
+							
+							
+							/*** Getting EST time ***/
+							TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));
+
+							SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+
+							Date time = new Date();
+
+							String time1 = formatter.format(time);
+
+							System.out.println(time1);
+							int hours = time.getHours();
+
+							System.out.println(hours);
+							// Check for Business hours or Non-Business hours
+							if ((hours >= 8) && (hours <= 18)) {
+								WebElement BeginChatText = driver.findElement(By.xpath(arr_locator[loc]));
+								
+								String bushr = BeginChatText.getText();
+								System.out.println(bushr);
+								String BeginChatActualText = "Begin Chat";
+								System.out.println("the value of"+ BeginChatActualText);
+								loc++;
+								WebElement BusHoursText = driver.findElement(By.xpath(arr_locator[loc]));
+								String bushrText = BeginChatText.getText();
+								System.out.println(bushrText);
+								String ChatActualText = "Have a quick question?";
+								System.out.println("the value of"+ ChatActualText);
+								if (bushr.equalsIgnoreCase(BeginChatActualText) || bushrText.contains(ChatActualText)) {
+									System.out.println("Live chat cta is visible");
+									BeginChatText.click();
+									
+									
+									
+									String parent = driver.getWindowHandle();
+
+											Set<String> wind = driver.getWindowHandles();
+
+											for (String windowHandle : wind) {
+												if (!(windowHandle.equals(parent))) {
+													driver.switchTo().window(windowHandle);
+
+													Thread.sleep(5000);
+
+													 String cta = driver.getCurrentUrl();
+
+													if (cta.contains("kineticcommunities")) {
+														System.out.println("kineticcommunities is passed");
+														//CustomKeywords.'chatkey.chat.title'(i, 13, 'passed')
+														//live.title(i, 13, 'passed')
+														LiveChatWriteExcel liv= new LiveChatWriteExcel();
+														try {
+															liv.businessLiveChat(i, 3, "BusinesshourchatPass");
+														} catch (IOException e) {
+															// TODO Auto-generated catch block
+															e.printStackTrace();
+														}
+														
+													} else {
+														System.out.println("kineticcommunities is failed");
+														LiveChatWriteExcel liv= new LiveChatWriteExcel();
+														try {
+															liv.businessLiveChat(i, 3, "BusinesshourchatFail");
+														} catch (IOException e) {
+															// TODO Auto-generated catch block
+															e.printStackTrace();
+														}
+
+														//CustomKeywords.'chatkey.chat.title'(i, 13, 'Failed')
+													//	live.title(i, 13, 'Failed')
+													}
+
+													driver.close();
+
+													driver.switchTo().window(parent);
+												}
+//												else{
+					//System.out.println("windowhandles failed");
+//												}
+											}
+									
+
+								}else {
+									System.out.println("Not valid");
+								}
+							} else {
+								loc++;
+								WebElement nonbushrs = driver.findElement(By.xpath(arr_locator[loc]));
+								String nonbushr = nonbushrs.getText();
+								System.out.println(nonbushr);
+								String s1 = "We're sorry, but Live Chat is only available during the following hours: Monday-Friday, 8:00 a.m. – 6:00 p.m. (ET) Saturday, 8:30 a.m. – 5 p.m. (ET)";
+								if (nonbushr.equalsIgnoreCase(s1)) {
+									System.out.println("Live chat cta is visible");
+									LiveChatWriteExcel liv= new LiveChatWriteExcel();
+									try {
+										liv.businessLiveChat(i, 2, "Non-BusinesshourPass");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+
+								}else {
+									LiveChatWriteExcel liv= new LiveChatWriteExcel();
+									try {
+										liv.businessLiveChat(i, 2, "Non-BusinesshourFail");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+								}
+
+							}
+						
+
+							
 						}
 			// default
 		}

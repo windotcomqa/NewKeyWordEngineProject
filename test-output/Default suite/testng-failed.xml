@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.dotcom.testcase.kickStart">
+      <class name="com.dotcom.testcase.ResKickStart">
         <methods>
-          <include name="setUp"/>
-          <include name="SignIn"/>
-          <include name="endTest"/>
           <include name="before"/>
+          <include name="SignIn"/>
+          <include name="setUp"/>
+          <include name="endTest"/>
         </methods>
-      </class> <!-- com.dotcom.testcase.kickStart -->
+      </class> <!-- com.dotcom.testcase.ResKickStart -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

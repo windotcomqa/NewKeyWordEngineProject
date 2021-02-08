@@ -62,7 +62,7 @@ public class Base extends Reports {
 	public WebDriver init_driver(String browserName) {
 		if (browserName.equals("chrome")) {
 
-			System.setProperty("webdriver.chrome.driver","./chromeDriver/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver","./ChromeDriver87/chromedriver.exe");
 
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
@@ -237,7 +237,15 @@ public class Base extends Reports {
 		click_element.click();
 
 	}
-	
+	//Kinetic one Click_Element
+		public void Kinetic_click_element(WebDriver driver, String LocatorName)
+
+		{
+			WebElement click_element = driver.findElement(By.xpath(LocatorName));
+			click_element.click();
+
+		}
+		
 
 	// SendKeys
 	public void SendKeys(WebDriver driver, String LocatorName, String value)
@@ -254,6 +262,14 @@ public class Base extends Reports {
 		WebElement mousehover = driver.findElement(By.xpath(LocatorName));
 		Actions ac = new Actions(driver);
 		ac.moveToElement(mousehover).click().build().perform();
+
+	}
+	public void hover(WebDriver driver, String LocatorName)
+
+	{
+		WebElement hover = driver.findElement(By.xpath(LocatorName));
+		Actions ac = new Actions(driver);
+		ac.moveToElement(hover).build().perform();
 
 	}
 

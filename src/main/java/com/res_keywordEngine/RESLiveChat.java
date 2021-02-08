@@ -9,16 +9,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class RESLiveChat {
-	
+import com.dotcom.keyword.engine.LiveChat;
+
+public class RESLiveChat extends RESLiveChatExcel {
 	public static void main(String[] args) throws Throwable {
 
 		System.setProperty("webdriver.chrome.driver",
-				"./driver/chromedriver.exe");
+				"./chromeDriver/chromedriver.exe");
 		ChromeDriver driver = new ChromeDriver();
-		driver.get("https://www.windstream.com/kinetic-tv");
+		
+		
+		driver.get("https://www.windstream.com/seo/products");
 		driver.manage().window().maximize();
-
+		
+		RESLiveChatExcel res= new RESLiveChatExcel();
+		res.chatLinkData("");
+		
 		/*** Getting EST time ***/
 		TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));
 
@@ -35,7 +41,7 @@ public class RESLiveChat {
 		// Check for Business hours three tile
 		if ((hours >= 8) && (hours <= 18)) {
 			
-			WebElement BeginChatText = driver.findElement(By.xpath("//a[text()='Chat now']"));
+			WebElement BeginChatText = driver.findElement(By.xpath("(//a[text()='Chat Now'])[1]"));
 			String bushr = BeginChatText.getText();
 			System.out.println(bushr);
 			String BeginChatActualText = "Chat now";
@@ -87,19 +93,119 @@ public class RESLiveChat {
 			}else {
 				System.out.println("Not valid");
 			}
-		} else {
-			WebElement nonbushrs = driver.findElement(By.xpath("( //p[@class=' para_desc vertical'])[1]"));
-			String nonbushr = nonbushrs.getText();
-			System.out.println(nonbushr);
-			String s1 = "We're sorry, but Live Chat is only available during the following hours: Monday-Friday, 8:00 a.m. – 6:00 p.m. (ET) Saturday, 8:30 a.m. – 5 p.m. (ET)";
-			if (nonbushr.equalsIgnoreCase(s1)) {
-				System.out.println("Live chat cta is visible");
+		} 
+		
+		
+		//non business hours
+		else {
+			//grey bar
+			WebElement BeginChatText = driver.findElement(By.xpath("//a[text()='Chat ']"));
+			String bushr = BeginChatText.getText();
+			System.out.println(bushr);
+			String BeginChatActualText = "Chat";
+			System.out.println("the value of"+ BeginChatActualText);
+			WebElement BusHoursText = driver.findElement(By.xpath("//div[@class='title']"));
+			String bushrText = BeginChatText.getText();
+			System.out.println(bushrText);
+			String ChatActualText = "Still need help ? We're here to assist you.";
+			System.out.println("the value of"+ ChatActualText);
+			if (bushr.equalsIgnoreCase(BeginChatActualText) || bushrText.contains(ChatActualText)) {
+				System.out.println("Live chat cta is visible in grey bar");
+				BeginChatText.click();
+				
+				String parent = driver.getWindowHandle();
 
+						Set<String> wind = driver.getWindowHandles();
+
+						for (String windowHandle : wind) {
+							if (!(windowHandle.equals(parent))) {
+								driver.switchTo().window(windowHandle);
+
+								Thread.sleep(5000);
+
+								 String cta = driver.getCurrentUrl();
+
+								if (cta.contains("contact-us")) {
+									System.out.println("contact-us Page is opened");
+									
+								} else {
+									System.out.println("contact-us Page is not opened");
+
+								
+								}
+
+								driver.close();
+
+								driver.switchTo().window(parent);
+							}
+
+						}
+				
+
+			}else {
+				System.out.println("Not valid");
 			}
 
-		}
+			
+			
+			
+			//three tile
+/*
+			WebElement BeginChatText = driver.findElement(By.xpath("(//a[text()='Chat Now'])[1]"));
+			String bushr = BeginChatText.getText();
+			System.out.println(bushr);
+			String BeginChatActualText = "Chat Now";
+			System.out.println("the value of"+ BeginChatActualText);
+			WebElement BusHoursText = driver.findElement(By.xpath("(//div[@class='card-body'])[6]/p[1]"));
+			String bushrText = BeginChatText.getText();
+			System.out.println(bushrText);
+			String ChatActualText = "We're sorry, but Live Chat is only available during the following hours: Monday-Friday, 8:00 a.m. – 6:00 p.m. (ET) Saturday, 8:30 a.m. – 5 p.m. (ET)";
+			System.out.println("the value of"+ ChatActualText);
+			if (bushr.equalsIgnoreCase(BeginChatActualText) || bushrText.contains(ChatActualText)) {
+				System.out.println("Live chat cta is visible");
+				BeginChatText.click();
+				
+				
+				
+				String parent = driver.getWindowHandle();
 
-	
+						Set<String> wind = driver.getWindowHandles();
+
+						for (String windowHandle : wind) {
+							if (!(windowHandle.equals(parent))) {
+								driver.switchTo().window(windowHandle);
+
+								Thread.sleep(5000);
+
+								 String cta = driver.getCurrentUrl();
+
+								if (cta.contains("contact-us")) {
+									System.out.println("contact-us Page is opened");
+									
+								} else {
+									System.out.println("contact-us Page is not opened");
+
+								
+								}
+
+								driver.close();
+
+								driver.switchTo().window(parent);
+							}
+
+						}
+				
+
+			}else {
+				System.out.println("Not valid");
+			}
+
+			
+			
+			*/
+			
+			}
+
 	}
 
 }
